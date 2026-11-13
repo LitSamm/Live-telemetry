@@ -1,0 +1,14 @@
+{
+  "name": "Anargya Live Telemetry",
+  "short_name": "Anargya Telemetry",
+  "description": "Anargya live telemetry dashboard for the Formula Student EV. This build shows simulated readings.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#080a0d",
+  "theme_color": "#080a0d",
+  "icons": [
+    { "src": "/anargya-app-icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/anargya-app-icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}

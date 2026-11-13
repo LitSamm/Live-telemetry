@@ -1,0 +1,75 @@
+/* Anargya theme: matches the car website (graphite, blue and pink, Helvetica + Inter, squared corners). */
+:root {
+  --brand-blue: #1768f5;
+  --brand-pink: #f20c62;
+  --glass: rgba(255, 255, 255, 0.035);
+  --hair: rgba(243, 242, 239, 0.14);
+}
+
+body { background: var(--canvas); }
+::selection { color: #080a0d; background: #9ebcff; }
+button:focus-visible, a:focus-visible, select:focus-visible { outline: 2px solid #f3f2ef; outline-offset: 3px; }
+
+/* Backdrop: the same soft blue and pink wash as the website, with a fine grain. */
+.main-column { position: relative; isolation: isolate; background:
+  radial-gradient(55% 40% at 92% 0%, rgba(23, 104, 245, 0.14), transparent 70%),
+  radial-gradient(40% 35% at 0% 100%, rgba(242, 12, 98, 0.08), transparent 70%); }
+.main-column::before { position: absolute; inset: 0; z-index: -1; content: ""; pointer-events: none; opacity: 0.5;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .05 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
+
+/* Brand lockup, same as the website header. */
+.brand-lockup { display: inline-flex; min-width: 0; align-items: center; gap: 0.7rem; }
+.brand-mark { display: block; width: 58px; height: 34px; flex: 0 0 auto; object-fit: contain; }
+.brand-name { display: block; font-family: "Helvetica Neue", Helvetica, var(--font-inter), Arial, sans-serif; font-size: 1.05rem; font-weight: 800; letter-spacing: 0.09em; line-height: 1.1; }
+.brand-caption { display: block; margin-top: 0.15rem; color: var(--muted); font-size: 0.55rem; letter-spacing: 0.16em; }
+.mobile-brand .brand-mark { width: 48px; height: 28px; }
+.mobile-brand .brand-name { font-size: 0.95rem; }
+
+/* Squared corners everywhere, like the website. */
+.nav-link, .sidebar-stream, .session-stamp, .summary-card, .speed-card, .panel, .metric-tab, .range-select, .coordinate-map,
+.gps-mark, .coordinates > div, .filter-chip, .sensor-card, .sensor-icon, .install-button, .dialog-close, .install-dialog,
+.dialog-icon, .section-number, .mobile-nav a, .panel-live { border-radius: 4px; }
+.session-stamp { border-radius: 0; }
+
+/* Surfaces: translucent glass on graphite. */
+.sidebar { background: rgba(10, 13, 17, 0.92); backdrop-filter: blur(14px); border-right-color: var(--hair); }
+.topbar { border-bottom-color: var(--hair); backdrop-filter: blur(16px) saturate(1.3); -webkit-backdrop-filter: blur(16px) saturate(1.3); }
+.summary-card, .panel, .sensor-card { background: var(--glass); border-color: var(--hair); transition: border-color 250ms ease, background 250ms ease, transform 350ms cubic-bezier(0.16, 1, 0.3, 1); }
+.summary-card:hover, .sensor-card:hover { border-color: rgba(109, 162, 255, 0.5); background: rgba(255, 255, 255, 0.06); transform: translateY(-3px); }
+.speed-card { border-color: rgba(109, 162, 255, 0.4); background: linear-gradient(125deg, rgba(23, 104, 245, 0.28) 0%, rgba(12, 15, 19, 0.9) 78%); }
+.speed-card::before { position: absolute; inset: 0 0 auto; height: 3px; content: ""; background: linear-gradient(90deg, var(--brand-blue), var(--brand-pink)); }
+.speed-card .summary-value { background: linear-gradient(100deg, #ffffff 10%, #9ebcff 90%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.sidebar-stream, .coordinates > div { background: var(--glass); }
+.coordinate-map { background-color: #0a0e14; }
+.map-pin { background: #0f2350; }
+
+/* Navigation and controls. */
+.nav-link.active { background: linear-gradient(90deg, rgba(23, 104, 245, 0.25), transparent); box-shadow: inset 3px 0 var(--brand-blue); color: #f3f2ef; }
+.metric-tab.selected, .filter-chip.selected { border-color: rgba(109, 162, 255, 0.7); background: rgba(23, 104, 245, 0.22); color: #f3f2ef; }
+.install-button { border-color: rgba(243, 242, 239, 0.45); background: transparent; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 700; font-size: 10px; }
+.install-button:hover { border-color: #f3f2ef; background: #f3f2ef; color: #080a0d; }
+.install-button:hover .install-glyph { color: #080a0d; }
+.dialog-close { border-color: transparent; background: var(--brand-blue); font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; font-size: 11px; }
+.dialog-close:hover { background: #3f7bf0; }
+.mobile-nav { background: rgba(10, 13, 17, 0.92); backdrop-filter: blur(14px); border-top-color: var(--hair); }
+.mobile-nav a:hover, .mobile-nav a:focus-visible { color: #f3f2ef; }
+
+/* Type: Helvetica-led headings in capitals, Inter for labels. */
+h1, .section-heading h2 { text-transform: uppercase; }
+h1 { font-weight: 800; letter-spacing: -0.045em; }
+.section-heading h2 { letter-spacing: -0.02em; }
+.eyebrow, .eyebrow-muted { text-transform: uppercase; }
+.eyebrow { color: #9ebcff; }
+.eyebrow-line { background: linear-gradient(90deg, var(--brand-blue), var(--brand-pink)); height: 2px; }
+
+/* Chart: sized from its real width (see page.tsx), so labels stay a constant, readable size. */
+.chart-axis-label { font-size: 11px; }
+.chart-legend { padding-left: 4px; }
+@media (max-width: 700px) {
+  .chart-axis-label { font-size: 11px; }
+  .chart-legend { padding-left: 2px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .summary-card:hover, .sensor-card:hover { transform: none; }
+}
